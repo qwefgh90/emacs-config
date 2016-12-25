@@ -1,11 +1,14 @@
 (prefer-coding-system 'utf-8)
 
+;; https://www.emacswiki.org/emacs/RecentFiles
 ;; open recent files
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+;; reference
+;; http://ensime.github.io/editors/emacs/learning/
 ;; global variables
 (setq
  inhibit-startup-screen t
@@ -71,7 +74,7 @@
  c-basic-offset 4)
 
 ;; modes
-;; (electric-indent-mode 0)
+(electric-indent-mode 0)
 
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
@@ -94,5 +97,31 @@
   :ensure t
   :pin melpa-stable)
 
+;; speed bar mode
+(require 'sr-speedbar)
+
+;; rst mode
+(require 'rst)
+
+;; Functions
+
+;; rename
+;; source: http://steve.yegge.googlepages.com/my-dot-emacs-file
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  (interactive "sNew name: ")
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
+
 ;; for update packages in MELPA
 ;; M-x list-packages [RETURN] U [RETURN] x [RETURN]
+
