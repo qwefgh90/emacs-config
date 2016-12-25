@@ -1,6 +1,6 @@
 (prefer-coding-system 'utf-8)
 
-;;recent find open
+;; open recent files
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -93,3 +93,6 @@
 (use-package ensime
   :ensure t
   :pin melpa-stable)
+
+;; for update packages in MELPA
+;; M-x list-packages [RETURN] U [RETURN] x [RETURN]
