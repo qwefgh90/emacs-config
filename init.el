@@ -63,7 +63,9 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-
+;; yaml
+(use-package yaml-mode
+  :init (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 ;; Functions
 
