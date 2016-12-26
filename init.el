@@ -1,4 +1,3 @@
-
 (prefer-coding-system 'utf-8)
 
 (require 'recentf)
@@ -48,10 +47,12 @@
   :pin melpa-stable)
 
 ;; speed bar mode
-(require 'sr-speedbar)
+(use-package sr-speedbar)
+;;(require 'sr-speedbar)
 
 ;; rst mode
-(require 'rst)
+(use-package rst)
+;;(require 'rst)
 
 ;; mark down
 (use-package markdown-mode
