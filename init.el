@@ -86,5 +86,12 @@
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
+;; neotree
+(use-package neotree
+  :init (global-set-key [f8] 'neotree-toggle))
+
+
 ;; for update packages in MELPA
 ;; M-x list-packages [RETURN] U [RETURN] x [RETURN]
+;; display help text - h
+
