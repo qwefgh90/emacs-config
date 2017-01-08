@@ -88,7 +88,7 @@
 
 ;; neotree
 (use-package neotree
-  :init (global-set-key [f8] 'neotree-toggle))
+  :init (global-set-key [f8] 'neotree-toggle) (setq neo-smart-open t))
 
 
 ;; for update packages in MELPA
