@@ -96,9 +96,22 @@
   :init (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-M->") 'mc/skip-to-next-like-this)
+  (global-set-key (kbd "C-M-<") 'mc/skip-to-previous-like-this)
   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
+  (global-set-key (kbd "C-S-<mouse-1>") 'mc/skip-to-previous-like-this)
+
+)
 ;; for update packages in MELPA
 ;; M-x list-packages [RETURN] U [RETURN] x [RETURN]
 ;; display help text - h
 
+(use-package expand-region
+  :init (global-set-key (kbd "C-j") 'er/expand-region))
+
+(use-package iy-go-to-char
+  :init (add-to-list 'mc/cursor-specific-vars 'iy-go-to-char-start-pos)
+  (global-set-key (kbd "C-c f") 'iy-go-to-char)
+  (global-set-key (kbd "C-c F") 'iy-go-to-char-backward)
+  (global-set-key (kbd "C-c ;") 'iy-go-to-or-up-to-continue)
+  (global-set-key (kbd "C-c ,") 'iy-go-to-or-up-to-continue-backward))
