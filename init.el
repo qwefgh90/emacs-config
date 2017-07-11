@@ -36,15 +36,27 @@
                     ("melpa" . "http://melpa.org/packages/")
                     ("melpa-stable" . "http://stable.melpa.org/packages/")))
 
+(add-to-list 'package-archives
+              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
+;;(use-package ensime
+;;  :ensure t
+;;  :pin melpa-stable)
 (use-package ensime
   :ensure t
-  :pin melpa-stable)
+  :pin melpa)
+
+(use-package sbt-mode
+  :pin melpa)
+
+(use-package scala-mode
+  :pin melpa)
 
 ;; speed bar mode
 (use-package sr-speedbar)
@@ -137,3 +149,29 @@
 (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (web-mode auto-complete skewer-mode js2-mode meghanada tide iy-go-to-char expand-region multiple-cursors neotree yaml-mode markdown-mode sr-speedbar ensime use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+
+;;tsx
+(use-package web-mode)
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+
